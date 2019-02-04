@@ -29,6 +29,15 @@ init();
 
 function init() {
 
+	document.querySelector('body').addEventListener('click', () => {
+		if (audio.paused) {
+			audio.play();
+			ctx.resume();
+		} else {
+			audio.pause();
+		}
+	})
+
 	for (let i = min; i < max; i += 1) {
 
 		materials[i] = new THREE.LineBasicMaterial( { color: 0xffffff, transparent: true } );

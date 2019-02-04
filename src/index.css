@@ -10,6 +10,12 @@ body {
   color: #FFF;
 }
 
+canvas {
+  position: fixed;
+  top: 0;
+  z-index: 0;
+}
+
 .Rooms {
   width: 100vw;
   height: 100vh;
@@ -23,8 +29,33 @@ body {
   font-size: 20px;
 }
 
+.Room {
+  width: 100vw;
+  height: 100vh;
+}
+
+.Room__Overlay {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0;
+}
+
+.Room__Overlay.visible {
+  opacity: 1;
+}
+
 .audio {
   position: fixed;
+  z-index: 20;
   opacity: 0;
   transition: opacity 0.2s ease
 }
