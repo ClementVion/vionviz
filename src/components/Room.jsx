@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import data from '../data.json';
 
 class Room extends Component {
 
@@ -14,11 +15,14 @@ class Room extends Component {
   }
 
   componentWillUnmount () {
-    this.removeScripts();
+    document.body.removeChild(this.three);
+    document.body.removeChild(this.script);
+    document.body.removeChild(document.querySelector('canvas'));
   }
 
   appendScripts() {
-    const id = this.props.match.params.id;
+    const slug = this.props.match.params.slug;
+    const room = data.rooms.filter(r => r.slug === slug)[0];
 
     this.three = document.createElement('script');
     this.three.src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.js";
@@ -26,15 +30,9 @@ class Room extends Component {
 
     this.three.addEventListener('load', () => {
       this.script = document.createElement("script");
-      this.script.src = "/js/" + id + ".js";
+      this.script.src = "/js/" + room.script;
       document.body.appendChild(this.script);
     })
-  }
-
-  removeScripts() {
-    document.body.removeChild(this.three);
-    document.body.removeChild(this.script);
-    document.body.removeChild(document.querySelector('canvas'));
   }
 
   listenClickEvent() {
@@ -44,14 +42,15 @@ class Room extends Component {
   }
 
   render() {
-    const id = this.props.match.params.id;
+    const slug = this.props.match.params.slug;
+    const room = data.rooms.filter(r => r.slug === slug)[0];
 
     const overlayCn = `Room__Overlay ${this.state.overlay ? 'visible' : ''}`;
 
     return (
       <div className="Room">
         <div className={overlayCn}> <p>Click anywhere to play / pause</p> </div>
-        <audio className="audio" id="audio" src={'/audio/' + id + '.mp3'} controls></audio>
+        <audio className="audio" id="audio" src={'/audio/' + room.audio} controls></audio>
       </div>
     );
   }

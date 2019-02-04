@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import data from '../data.json';
 
 class Home extends Component {
   render() {
@@ -7,7 +8,17 @@ class Home extends Component {
       <div className="Home">
 
         <div className="Rooms">
-          <Link className="Rooms__Link" to="/r/17"> n°17 </Link>
+          {data.rooms && data.rooms.map(room => {
+            return (
+              <Link 
+                className="Rooms__Link" 
+                to={'/r/' + room.slug}
+                key={room.slug}
+              > 
+                  {room.name} 
+              </Link>
+            )
+          })}
         </div>
 
       </div>

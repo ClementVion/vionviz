@@ -1,0 +1,16 @@
+{
+  "rooms": [
+    {
+      "name": "17 // endless tunnel",
+      "slug": "endless-tunnel",
+      "audio": "endless-tunnel.m4a",
+      "script": "endless-tunnel.js"
+    },
+    {
+      "name": "15 // something-about-us",
+      "slug": "something-about-us",
+      "audio": "something-about-us.mp3",
+      "script": "something-about-us.js"
+    }
+  ]
+}
