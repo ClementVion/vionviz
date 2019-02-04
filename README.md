@@ -1,1 +1,1 @@
-Available at https://github.com/ClementVion/vionviz.git
+Available at http://vionviz.club/
