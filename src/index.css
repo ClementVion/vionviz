@@ -48,6 +48,7 @@ canvas {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   cursor: pointer;
   z-index: 10;
   opacity: 0;
@@ -55,6 +56,15 @@ canvas {
 
 .Room__Overlay.visible {
   opacity: 1;
+}
+
+.Room__OverlayText {
+  margin-top: 80px;
+}
+
+.Room__OverlayCredits {
+  font-size: 11px;
+  color: #7a7a7a;
 }
 
 .audio {

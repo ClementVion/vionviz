@@ -53,8 +53,7 @@
       "name": "015 // endless tunnel",
       "slug": "015-endless-tunnel",
       "audio": "015-endless-tunnel.m4a",
-      "script": "015-endless-tunnel.js",
-      "credits": ""
+      "script": "015-endless-tunnel.js"
     },
     {
       "name": "017 // something about us",
