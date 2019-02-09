@@ -57,7 +57,7 @@ class Room extends Component {
 
     return (
       <div className="Room">
-        <div className={overlayCn}> <p>Click anywhere to play / pause</p> </div>
+        <div className={overlayCn}> <p>click anywhere to play / pause</p> </div>
         <audio ref={this.audio} className="audio" id="audio" src={'/audio/' + room.audio} controls></audio>
       </div>
     );

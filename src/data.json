@@ -1,16 +1,67 @@
 {
   "rooms": [
     {
-      "name": "15 // endless tunnel",
-      "slug": "endless-tunnel",
-      "audio": "endless-tunnel.m4a",
-      "script": "endless-tunnel.js"
+      "name": "007 // unnamed",
+      "slug": "007-unnamed",
+      "audio": "007-bambooman-shudder.mp3",
+      "script": "007-unnamed.js",
+      "credits": "Bambooman - Shudder"
     },
     {
-      "name": "17 // something about us",
-      "slug": "something-about-us",
-      "audio": "something-about-us.mp3",
-      "script": "something-about-us.js"
+      "name": "008 // unnamed",
+      "slug": "008-unnamed",
+      "audio": "008-flying-lotus-computer-face.mp3",
+      "script": "008-unnamed.js",
+      "credits": "Flying Lotus - Computer Face"
+    },
+    {
+      "name": "009 // twin peaks",
+      "slug": "009-twin-peaks",
+      "audio": "009-flying-lotus-twin-peaks.mp3",
+      "script": "009-twin-peaks.js",
+      "credits": "Flying Lotus - Twin Peaks"
+    },
+    {
+      "name": "010 // unnamed",
+      "slug": "010-unnamed",
+      "audio": "010-jon-hopkins-emerald-rush.mp3",
+      "script": "010-unnamed.js",
+      "credits": "Jon Hopkins - Emerald Rush"
+    },
+    {
+      "name": "011 // glitchy waves",
+      "slug": "011-glitchy-waves",
+      "audio": "011-fjaak-dont-leave-me.mp3",
+      "script": "011-glitchy-waves.js",
+      "credits": "Fjaak - Don't leave me"
+    },
+    {
+      "name": "012 // let's go",
+      "slug": "012-lets-go",
+      "audio": "012-san-soda-lets-go.mp3",
+      "script": "012-lets-go.js",
+      "credits": "San Soda - Let's go"
+    },
+    {
+      "name": "014 // unnamed",
+      "slug": "014-unnamed",
+      "audio": "014-paula-temple-gegen.mp3",
+      "script": "014-unnamed.js",
+      "credits": "Paula Temple - Gegen"
+    },
+    {
+      "name": "015 // endless tunnel",
+      "slug": "015-endless-tunnel",
+      "audio": "015-endless-tunnel.m4a",
+      "script": "015-endless-tunnel.js",
+      "credits": ""
+    },
+    {
+      "name": "017 // something about us",
+      "slug": "017-something-about-us",
+      "audio": "017-something-about-us.mp3",
+      "script": "017-something-about-us.js",
+      "credits": "Daft Punk - Something About Us"
     }
   ]
 }
