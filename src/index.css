@@ -28,6 +28,7 @@ canvas {
 .Rooms__Link {
   color: #FFF;
   font-size: 20px;
+  line-height: 30px;
   text-decoration: none;
 }
 
@@ -64,4 +65,25 @@ canvas {
 .audio:hover {
   opacity: 1;
   transition: opacity 0.2s ease
+}
+
+.FuckYourSmartphoneIDontHaveTimeForThat {
+  position: fixed;
+  z-index: 999;
+  background: #000;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+}
+
+html.touch .FuckYourSmartphoneIDontHaveTimeForThat {
+  display: block;
+}
+
+.FuckYourSmartphoneIDontHaveTimeForThat > p {
+  width: 60%;
+  font-size: 12px;
+  line-height: 18px;
+  margin-left: 5%;
+  margin-top: 65vh;
 }

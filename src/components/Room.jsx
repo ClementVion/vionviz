@@ -19,7 +19,6 @@ class Room extends Component {
 
     import('../visualisations/' + room.script)
       .then(module => {
-        console.log(module)
         this.visualisation = module;
         this.visualisation.init(this.analyser, this.frequencyData);
       })
