@@ -21,7 +21,7 @@ function initThree() {
   camera.position.x = 0
   camera.position.y = 3;
   camera.position.z = 6;
-  camera.lookAt(0, 0, 0)
+  // camera.lookAt(0, 0, 0)
   renderer = new THREE.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);

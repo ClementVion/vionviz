@@ -47,7 +47,7 @@ canvas {
   line-height: 27px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   flex-direction: column;
   cursor: pointer;
   z-index: 10;
@@ -58,8 +58,18 @@ canvas {
   opacity: 1;
 }
 
+.Room__OverlayContainer {
+  height: 100px;
+  margin-top: calc(50vh - 50px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 .Room__OverlayText {
-  margin-top: 80px;
+  /* margin-top: 80px; */
 }
 
 .Room__OverlayCredits {
