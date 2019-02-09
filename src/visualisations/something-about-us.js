@@ -1,22 +1,13 @@
-let scene = new THREE.Scene();
-scene.background = new THREE.Color(0x0b0b0d);
-let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.x = 0
-camera.position.y = 0;
-camera.position.z = 6;
-camera.lookAt(0, 0, 0)
-let renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+import * as THREE from 'three';
 
-let ctx = new AudioContext();
-let audio = document.getElementById('audio');
-let audioSrc = ctx.createMediaElementSource(audio);
-let analyser = ctx.createAnalyser();
-audioSrc.connect(analyser);
-audioSrc.connect(ctx.destination);
-let frequencyData = new Uint8Array(analyser.frequencyBinCount);
+let reqId = undefined;
 
+let analyser = undefined;
+let frequencyData = undefined;
+
+let scene = undefined;
+let camera = undefined;
+let renderer = undefined;
 
 let geometries = [];
 let materials = []
@@ -25,18 +16,25 @@ let max = 10;
 let min = 0;
 let distance = Math.PI * 2 / max
 
-init();
+function initThree() {
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x0b0b0d);
+  camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.x = 0
+  camera.position.y = 0;
+  camera.position.z = 6;
+  camera.lookAt(0, 0, 0)
+  renderer = new THREE.WebGLRenderer();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
+}
 
-function init() {
+export function init(analyserToClone, frequencyDataToClone) {
 
-	document.querySelector('body').addEventListener('click', () => {
-		if (audio.paused) {
-			audio.play();
-			ctx.resume();
-		} else {
-			audio.pause();
-		}
-	})
+  initThree();
+
+  analyser = analyserToClone;
+  frequencyData = frequencyDataToClone;
 
 	for (let i = min; i < max; i += 1) {
 
@@ -55,9 +53,9 @@ function init() {
 		scene.add(objs[i])
 	}
 
-	animate();
-}
+	reqId = requestAnimationFrame(animate);
 
+}
 
 function displaceVertices(obj, dX, dY, dZ, size, magnitude, speed, ts, index) {
 
@@ -101,7 +99,11 @@ function render(ts) {
 }
 
 function animate(ts) {
-	requestAnimationFrame(animate);
+	reqId = requestAnimationFrame(animate);
 	render(ts);
 	renderer.render(scene, camera);
+}
+
+export function stop() {
+  cancelAnimationFrame(reqId);
 }

@@ -7,38 +7,47 @@ class Room extends Component {
     super(props);
 
     this.state = {overlay: true};
+    this.audio = React.createRef();
   }
 
   componentDidMount () {
-    this.appendScripts();
-    this.listenClickEvent();
-  }
 
-  componentWillUnmount () {
-    document.body.removeChild(this.three);
-    document.body.removeChild(this.script);
-    document.body.removeChild(document.querySelector('canvas'));
-  }
+    this.initAudio();
 
-  appendScripts() {
     const slug = this.props.match.params.slug;
     const room = data.rooms.filter(r => r.slug === slug)[0];
 
-    this.three = document.createElement('script');
-    this.three.src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.js";
-    document.body.appendChild(this.three);
+    import('../visualisations/' + room.script)
+      .then(module => {
+        console.log(module)
+        this.visualisation = module;
+        this.visualisation.init(this.analyser, this.frequencyData);
+      })
 
-    this.three.addEventListener('load', () => {
-      this.script = document.createElement("script");
-      this.script.src = "/js/" + room.script;
-      document.body.appendChild(this.script);
-    })
+      document.querySelector('body').addEventListener('click', this.handleClick);
+
   }
 
-  listenClickEvent() {
-    document.querySelector('body').addEventListener('click', () => {
-      this.setState({overlay: !this.state.overlay});
-    })
+  initAudio () {
+    this.ctx = new AudioContext();
+    this.audioSrc = this.ctx.createMediaElementSource(this.audio.current);
+    this.analyser = this.ctx.createAnalyser();
+    this.audioSrc.connect(this.analyser);
+    this.audioSrc.connect(this.ctx.destination);
+    this.frequencyData = new Uint8Array(this.analyser.frequencyBinCount);
+  } 
+
+  handleClick = () => {
+    
+    this.setState({overlay: !this.state.overlay});
+    
+    if (this.audio.current.paused) {
+      this.audio.current.play();
+      this.ctx.resume();
+    } else {
+      this.audio.current.pause();
+    }
+    
   }
 
   render() {
@@ -50,10 +59,19 @@ class Room extends Component {
     return (
       <div className="Room">
         <div className={overlayCn}> <p>Click anywhere to play / pause</p> </div>
-        <audio className="audio" id="audio" src={'/audio/' + room.audio} controls></audio>
+        <audio ref={this.audio} className="audio" id="audio" src={'/audio/' + room.audio} controls></audio>
       </div>
     );
   }
+
+  componentWillUnmount () {
+    if (document.querySelector('canvas')) {
+      document.body.removeChild(document.querySelector('canvas'));
+    }
+    document.querySelector('body').removeEventListener('click', this.handleClick);
+    this.visualisation.stop();
+  }
+
 }
 
 export default Room;
