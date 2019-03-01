@@ -61,6 +61,20 @@
       "audio": "017-something-about-us.mp3",
       "script": "017-something-about-us.js",
       "credits": "Daft Punk - Something About Us"
+    },
+    {
+      "name": "018 // unfinished",
+      "slug": "018-unfinished",
+      "audio": "018-unfinished.m4a",
+      "script": "018-unfinished.js",
+      "credits": ""
+    },
+    {
+      "name": "019 // afx avril 14th",
+      "slug": "019-aphex-twin-avril",
+      "audio": "019-aphex-twin-avril-14th.mp3",
+      "script": "019-aphex-twin-avril-14th.js",
+      "credits": "Aphex Twin - Avril 14th"
     }
   ]
 }
