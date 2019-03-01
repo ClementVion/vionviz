@@ -9,15 +9,27 @@ class Home extends Component {
 
         <div className="Rooms">
           {data.rooms && data.rooms.map(room => {
-            return (
-              <Link 
-                className="Rooms__Link" 
-                to={'/r/' + room.slug}
-                key={room.slug}
-              > 
-                  {room.name} 
-              </Link>
-            )
+            if (room.isMidiRoom) {
+              return (
+                <Link 
+                  className="Rooms__Link" 
+                  to={'/mr/' + room.slug}
+                  key={room.slug}
+                > 
+                    {room.name}
+                </Link>
+              )
+            } else {   
+              return (
+                <Link 
+                  className="Rooms__Link" 
+                  to={'/r/' + room.slug}
+                  key={room.slug}
+                > 
+                    {room.name} 
+                </Link>
+              )
+            }
           })}
         </div>
 

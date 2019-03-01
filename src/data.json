@@ -75,6 +75,22 @@
       "audio": "019-aphex-twin-avril-14th.mp3",
       "script": "019-aphex-twin-avril-14th.js",
       "credits": "Aphex Twin - Avril 14th"
+    },
+    {
+      "name": "m001 // midi room experiment",
+      "slug": "m001-midi-room-experiment",
+      "audio": null,
+      "script": "m001-midi-room-experiment.js",
+      "credits": "This viz works only with a midi controller",
+      "isMidiRoom": true
+    },
+    {
+      "name": "m002 // midi room experiment",
+      "slug": "m002-midi-room-experiment",
+      "audio": null,
+      "script": "m002-midi-room-experiment.js",
+      "credits": "This viz works only with a midi controller",
+      "isMidiRoom": true
     }
   ]
 }

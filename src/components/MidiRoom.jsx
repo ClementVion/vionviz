@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import data from '../data.json';
 
-class Room extends Component {
+class MidiRoom extends Component {
 
   constructor(props) {
     super(props);
 
     this.state = {overlay: true};
-    this.audio = React.createRef();
   }
 
   componentDidMount () {
 
-    this.initAudio();
+    this.initMidi();
 
     const slug = this.props.match.params.slug;
     const room = data.rooms.filter(r => r.slug === slug)[0];
@@ -20,31 +19,33 @@ class Room extends Component {
     import('../visualisations/' + room.script)
       .then(module => {
         this.visualisation = module;
-        this.visualisation.init(this.analyser, this.frequencyData);
+        this.visualisation.init();
       })
 
     document.querySelector('body').addEventListener('click', this.handleClick);
+
   }
 
-  initAudio () {
-    this.ctx = new AudioContext();
-    this.audioSrc = this.ctx.createMediaElementSource(this.audio.current);
-    this.analyser = this.ctx.createAnalyser();
-    this.audioSrc.connect(this.analyser);
-    this.audioSrc.connect(this.ctx.destination);
-    this.frequencyData = new Uint8Array(this.analyser.frequencyBinCount);
-  } 
+  initMidi () {
+    navigator.requestMIDIAccess()
+    .then((access) => {
+      console.log('access', access);
+      const midiDevice = Array.from(access.inputs.values())[0];
+      console.log('midiDevice', midiDevice);
+      this.connectToMidiDevice(midiDevice);
+    })
+  }
+
+  connectToMidiDevice (midiDevice) {
+    console.log('Connecting to midi device', midiDevice);
+    midiDevice.onmidimessage = (m) => {
+      this.visualisation.midiDataReceived(m.data)
+    }
+  }
 
   handleClick = () => {
     
     this.setState({overlay: !this.state.overlay});
-    
-    if (this.audio.current.paused) {
-      this.audio.current.play();
-      this.ctx.resume();
-    } else {
-      this.audio.current.pause();
-    }
     
   }
 
@@ -58,13 +59,12 @@ class Room extends Component {
       <div className="Room">
         <div className={overlayCn}> 
           <div className="Room__OverlayContainer">
-            <p className="Room__OverlayText">click anywhere to play / pause</p> 
+            <p className="Room__OverlayText">click anywhere to start playing with midi</p> 
             {room.credits &&
-              <p className="Room__OverlayCredits"> Credits: {room.credits} </p>
+              <p className="Room__OverlayCredits"> {room.credits} </p>
             }
           </div>
         </div>
-        <audio ref={this.audio} className="audio" id="audio" src={'/audio/' + room.audio} controls></audio>
       </div>
     );
   }
@@ -74,9 +74,9 @@ class Room extends Component {
       document.body.removeChild(document.querySelector('canvas'));
     }
     document.querySelector('body').removeEventListener('click', this.handleClick);
-    this.visualisation.stop();
+    // this.visualisation.stop();
   }
 
 }
 
-export default Room;
+export default MidiRoom;
