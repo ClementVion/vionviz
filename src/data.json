@@ -75,6 +75,13 @@
       "audio": "019-aphex-twin-avril-14th.mp3",
       "script": "019-aphex-twin-avril-14th.js",
       "credits": "Aphex Twin - Avril 14th"
+    },
+    {
+      "name": "020 // la fête noire",
+      "slug": "020-la-fete-noire",
+      "audio": "020-la-fete-noire.mp3",
+      "script": "020-la-fete-noire.js",
+      "credits": "Flavien Berger - La Fête Noire"
     }
   ]
 }
