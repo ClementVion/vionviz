@@ -82,6 +82,13 @@
       "audio": "020-la-fete-noire.mp3",
       "script": "020-la-fete-noire.js",
       "credits": "Flavien Berger - La Fête Noire"
+    },
+    {
+      "name": "021 // go on",
+      "slug": "021-go-on",
+      "audio": "021-go-on.flac",
+      "script": "021-go-on.js",
+      "credits": "vionviz - go on"
     }
   ]
 }
